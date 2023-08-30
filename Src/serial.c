@@ -319,7 +319,39 @@ const io_stream_t *serialInit (uint32_t baud_rate)
     };
 
 #elif SERIAL_MOD == 2
+#ifdef SERIAL2_ALT_PINMAP
 
+    __HAL_RCC_USART2_CLK_ENABLE();
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+
+    GPIO_InitTypeDef GPIO_InitStructure = {
+        .Mode      = GPIO_MODE_AF_PP,
+        .Pull      = GPIO_NOPULL,
+        .Speed     = GPIO_SPEED_FREQ_VERY_HIGH,
+        .Pin       = GPIO_PIN_5|GPIO_PIN_6,
+        .Alternate = GPIO_AF7_USART2
+    };
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStructure);
+
+    static const periph_pin_t tx = {
+        .function = Output_TX,
+        .group = PinGroup_UART1,
+        .port  = GPIOD,
+        .pin   = 5,
+        .mode  = { .mask = PINMODE_OUTPUT },
+        .description = "UART1"
+    };
+
+    static const periph_pin_t rx = {
+        .function = Input_RX,
+        .group = PinGroup_UART1,
+        .port = GPIOD,
+        .pin = 6,
+        .mode = { .mask = PINMODE_NONE },
+        .description = "UART1"
+    };
+
+#else
     __HAL_RCC_USART2_CLK_ENABLE();
     __HAL_RCC_GPIOA_CLK_ENABLE();
 
@@ -349,6 +381,7 @@ const io_stream_t *serialInit (uint32_t baud_rate)
         .mode = { .mask = PINMODE_NONE },
         .description = "UART1"
     };
+#endif
 
 #elif SERIAL_MOD == 3
 
@@ -670,7 +703,40 @@ const io_stream_t *serial2Init (uint32_t baud_rate)
     };
 
 #elif SERIAL2_MOD == 2
+#ifdef SERIAL2_ALT_PINMAP
 
+    __HAL_RCC_USART2_CLK_ENABLE();
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+
+    GPIO_InitTypeDef GPIO_InitStructure = {
+        .Mode      = GPIO_MODE_AF_PP,
+        .Pull      = GPIO_NOPULL,
+        .Speed     = GPIO_SPEED_FREQ_VERY_HIGH,
+        .Pin       = GPIO_PIN_5|GPIO_PIN_6,
+        .Alternate = GPIO_AF7_USART2
+    };
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStructure);
+
+    static const periph_pin_t tx = {
+        .function = Output_TX,
+        .group = PinGroup_UART2,
+        .port  = GPIOD,
+        .pin   = 5,
+        .mode  = { .mask = PINMODE_OUTPUT },
+        .description = "UART2"
+    };
+
+    static const periph_pin_t rx = {
+        .function = Input_RX,
+        .group = PinGroup_UART2,
+        .port = GPIOD,
+        .pin = 6,
+        .mode = { .mask = PINMODE_NONE },
+        .description = "UART2"
+    };
+
+#else
+	
     __HAL_RCC_USART2_CLK_ENABLE();
     __HAL_RCC_GPIOA_CLK_ENABLE();
 
@@ -679,7 +745,7 @@ const io_stream_t *serial2Init (uint32_t baud_rate)
         .Pull      = GPIO_NOPULL,
         .Speed     = GPIO_SPEED_FREQ_VERY_HIGH,
         .Pin       = GPIO_PIN_2|GPIO_PIN_3,
-        .Alternate = GPIO_AF7_USART1
+        .Alternate = GPIO_AF7_USART2
     };
     HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
 
