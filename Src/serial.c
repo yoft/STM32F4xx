@@ -319,7 +319,7 @@ const io_stream_t *serialInit (uint32_t baud_rate)
     };
 
 #elif SERIAL_MOD == 2
-#ifdef SERIAL2_ALT_PINMAP
+#ifdef SERIAL_ALT_PINMAP
 
     __HAL_RCC_USART2_CLK_ENABLE();
     __HAL_RCC_GPIOD_CLK_ENABLE();

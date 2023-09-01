@@ -246,6 +246,9 @@ static input_signal_t inputpin[] = {
 #ifdef AUXINPUT6_PIN
     { .id = Input_Aux6,           .port = AUXINPUT6_PORT,     .pin = AUXINPUT6_PIN,       .group = PinGroup_AuxInput }
 #endif
+#ifdef AUXINPUT7_PIN
+    { .id = Input_Aux7,           .port = AUXINPUT7_PORT,     .pin = AUXINPUT7_PIN,       .group = PinGroup_AuxInput }
+#endif
 };
 
 static output_signal_t outputpin[] = {
@@ -389,40 +392,40 @@ static output_signal_t outputpin[] = {
 #ifdef SPI_RST_PORT
     { .id = Output_SPIRST,          .port = SPI_RST_PORT,           .pin = SPI_RST_PIN,             .group = PinGroup_SPI },
 #endif
-#ifdef AUXOUTPUT0_PORT
+#ifdef AUXOUTPUT0_PIN
     { .id = Output_Aux0,            .port = AUXOUTPUT0_PORT,        .pin = AUXOUTPUT0_PIN,          .group = PinGroup_AuxOutput },
 #endif
-#ifdef AUXOUTPUT1_PORT
+#ifdef AUXOUTPUT1_PIN
     { .id = Output_Aux1,            .port = AUXOUTPUT1_PORT,        .pin = AUXOUTPUT1_PIN,          .group = PinGroup_AuxOutput },
 #endif
-#ifdef AUXOUTPUT2_PORT
+#ifdef AUXOUTPUT2_PIN
     { .id = Output_Aux2,            .port = AUXOUTPUT2_PORT,        .pin = AUXOUTPUT2_PIN,          .group = PinGroup_AuxOutput },
 #endif
-#ifdef AUXOUTPUT3_PORT
+#ifdef AUXOUTPUT3_PIN
     { .id = Output_Aux3,            .port = AUXOUTPUT3_PORT,        .pin = AUXOUTPUT3_PIN,          .group = PinGroup_AuxOutput },
 #endif
-#ifdef AUXOUTPUT4_PORT
+#ifdef AUXOUTPUT4_PIN
     { .id = Output_Aux4,            .port = AUXOUTPUT4_PORT,        .pin = AUXOUTPUT4_PIN,          .group = PinGroup_AuxOutput },
 #endif
-#ifdef AUXOUTPUT5_PORT
+#ifdef AUXOUTPUT5_PIN
     { .id = Output_Aux5,            .port = AUXOUTPUT5_PORT,        .pin = AUXOUTPUT5_PIN,          .group = PinGroup_AuxOutput },
 #endif
-#ifdef AUXOUTPUT6_PORT
+#ifdef AUXOUTPUT6_PIN
     { .id = Output_Aux6,            .port = AUXOUTPUT6_PORT,        .pin = AUXOUTPUT6_PIN,          .group = PinGroup_AuxOutput },
 #endif
-#ifdef AUXOUTPUT7_PORT
+#ifdef AUXOUTPUT7_PIN
     { .id = Output_Aux7,            .port = AUXOUTPUT7_PORT,        .pin = AUXOUTPUT7_PIN,          .group = PinGroup_AuxOutput },
 #endif
-#ifdef AUXOUTPUT0_PWM_PORT
+#ifdef AUXOUTPUT0_PWM_PIN
     { .id = Output_Analog_Aux0,     .port = AUXOUTPUT0_PWM_PORT,    .pin = AUXOUTPUT0_PWM_PIN,      .group = PinGroup_AuxOutputAnalog, .mode = { PINMODE_PWM } },
 #endif
-#ifdef AUXOUTPUT0_ANALOG_PORT
+#ifdef AUXOUTPUT0_ANALOG_PIN
     { .id = Output_Analog_Aux0,     .port = AUXOUTPUT0_ANALOG_PORT, .pin = AUXOUTPUT0_ANALOG_PIN,   .group = PinGroup_AuxOutputAnalog },
 #endif
-#ifdef AUXOUTPUT1_PWM_PORT
+#ifdef AUXOUTPUT1_PWM_PIN
     { .id = Output_Analog_Aux1,     .port = AUXOUTPUT1_PWM_PORT,    .pin = AUXOUTPUT1_PWM_PIN,      .group = PinGroup_AuxOutputAnalog, .mode = { PINMODE_PWM } },
 #endif
-#ifdef AUXOUTPUT1_ANALOG_PORT
+#ifdef AUXOUTPUT1_ANALOG_PIN
     { .id = Output_Analog_Aux1,     .port = AUXOUTPUT1_ANALOG_PORT, .pin = AUXOUTPUT1_ANALOG_PIN,   .group = PinGroup_AuxOutputAnalog }
 #endif
 };
