@@ -141,6 +141,8 @@
   #include "btt_skr_2.0_map.h"
 #elif defined(BOARD_BTT_SKR_20_DAC)
   #include "btt_skr_2.0_dac_map.h"
+#elif defined(BOARD_BTT_OCTOPUS_PRO)
+  #include "btt_octopus_pro_map.h"
 #elif defined(BOARD_FYSETC_S6)
   #include "fysetc_s6_map.h"
 #elif defined(BOARD_PROTONEER_3XX)

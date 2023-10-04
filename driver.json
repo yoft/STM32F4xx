@@ -470,6 +470,32 @@
           "NUCLEO_F446": "",
           "RTC_ENABLE": 1
       }
-    }
+    },
+    {
+      "name": "BTT OCTOPUS PRO F446 (Bootloader)",
+      "symbol": "BOARD_BTT_OCTOPUS_PRO",
+      "URL": "https://github.com/bigtreetech/BIGTREETECH-SKR-PRO-V1.1/tree/master/SKR-PRO-V1.2",
+      "MAP": "Inc/btt_octopus_pro_map.h",
+      "caps": {
+        "axes": 8,
+		"ganged_axes": 3,
+		"auto_square": 2,
+        "digital_in": 7,
+        "digital_out": 8,
+        "eeprom": 1,
+        "fram": 1,
+        "i2c": 1,
+        "trinamic_spi_cs": 1,
+        "trinamic_spi_chain": 0,
+        "trinamic_uart_n": 0,
+        "trinamic_uart_addr": 0,
+        "ldscript": "???"
+      },
+      "symbols": {
+          "STM32F446xx": "",
+          "HSE_VALUE": 12000000,
+          "HAS_BOOTLOADER": ""
+      }
+    },
   ]
 }
