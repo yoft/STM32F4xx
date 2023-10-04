@@ -54,6 +54,8 @@
 #define timerINT(t) timerint(t)
 #define timerint(t) TIM ## t ## _IRQn
 #define timerHANDLER(t) timerhandler(t)
+#define timerCLKEN(t) timerclken(t)
+#define timerclken(t) __HAL_RCC_TIM ## t ## _CLK_ENABLE
 #define timerhandler(t) TIM ## t ## _IRQHandler
 #define timerCCEN(c, n) timerccen(c, n)
 #define timerccen(c, n) TIM_CCER_CC ## c ## n ## E
@@ -71,8 +73,6 @@
 #define timercr2ois(c, n) TIM_CR2_OIS ## c ## n
 #define timerAF(t, f) timeraf(t, f)
 #define timeraf(t, f) GPIO_AF ## f ## _TIM ## t
-#define timerCLKENA(t) timercken(t)
-#define timercken(t) __HAL_RCC_TIM ## t ## _CLK_ENABLE
 #define timerAPB2(t) (t == 1 || t == 8 || t == 9 || t == 10 || t == 11)
 #define TIMER_CLOCK_MUL(d) (d == RCC_HCLK_DIV1 ? 1 : 2)
 
@@ -82,7 +82,8 @@
 #define usartint(t) USART ## t ## _IRQn
 #define usartHANDLER(t) usarthandler(t)
 #define usarthandler(t) USART ## t ## _IRQHandler
-
+#define usartCLKEN(t) usartclken(t)
+#define usartclken(t) __HAL_RCC_USART ## t ## _CLK_ENABLE
 // Configuration, do not change here
 
 #define CNC_BOOSTERPACK     0
@@ -156,6 +157,8 @@
   #include "flexi_hal_map.h"
 #elif defined(BOARD_STM32F401_UNI)
   #include "stm32f401_uni_map.h"
+#elif defined(BOARD_MKS_ROBIN_NANO_30)
+  #include "mks_robin_nano_v3.0_map.h"
 #elif defined(BOARD_MY_MACHINE)
   #include "my_machine_map.h"
 #else // default board
@@ -178,15 +181,23 @@
 
 #define STEPPER_TIMER_N             5
 #define STEPPER_TIMER               timer(STEPPER_TIMER_N)
+#define STEPPER_TIMER_CLKEN         timerCLKEN(STEPPER_TIMER_N)
 #define STEPPER_TIMER_IRQn          timerINT(STEPPER_TIMER_N)
 #define STEPPER_TIMER_IRQHandler    timerHANDLER(STEPPER_TIMER_N)
-#define STEPPER_TIMER_CLOCK_ENA     timerCLKENA(STEPPER_TIMER_N)
 
 #define PULSE_TIMER_N               4
 #define PULSE_TIMER                 timer(PULSE_TIMER_N)
+#define PULSE_TIMER_CLKEN           timerCLKEN(PULSE_TIMER_N)
 #define PULSE_TIMER_IRQn            timerINT(PULSE_TIMER_N)
 #define PULSE_TIMER_IRQHandler      timerHANDLER(PULSE_TIMER_N)
-#define PULSE_TIMER_CLOCK_ENA       timerCLKENA(PULSE_TIMER_N)
+
+#if defined(STM32F407xx) || defined(STM32F429xx) || defined(STM32F446xx)
+#define PULSE2_TIMER_N              7
+#define PULSE2_TIMER                timer(PULSE2_TIMER_N)
+#define PULSE2_TIMER_CLKEN          timerCLKEN(PULSE2_TIMER_N)
+#define PULSE2_TIMER_IRQn           timerINT(PULSE2_TIMER_N)
+#define PULSE2_TIMER_IRQHandler     timerHANDLER(PULSE2_TIMER_N)
+#endif
 
 #ifdef SPINDLE_PWM_PORT_BASE
 
@@ -249,6 +260,7 @@
 #define SPINDLE_PWM_CCR 2
 #endif
 #define SPINDLE_PWM_TIMER           timer(SPINDLE_PWM_TIMER_N)
+#define SPINDLE_PWM_TIMER_CLKEN     timerCLKEN(SPINDLE_PWM_TIMER_N)
 #define SPINDLE_PWM_TIMER_CCR       timerCCR(SPINDLE_PWM_TIMER_N, SPINDLE_PWM_TIMER_CH)
 #define SPINDLE_PWM_TIMER_CCMR      timerCCMR(SPINDLE_PWM_TIMER_N, SPINDLE_PWM_CCR)
 #define SPINDLE_PWM_CCMR_OCM_SET    timerOCM(SPINDLE_PWM_CCR, SPINDLE_PWM_TIMER_CH)
@@ -265,7 +277,7 @@
 
 #define SPINDLE_PWM_PORT            ((GPIO_TypeDef *)SPINDLE_PWM_PORT_BASE)
 #define SPINDLE_PWM_AF              timerAF(SPINDLE_PWM_TIMER_N, SPINDLE_PWM_TIMER_AF)
-#define SPINDLE_PWM_CLOCK_ENA       timerCLKENA(SPINDLE_PWM_TIMER_N)
+#define SPINDLE_PWM_CLKEN           timerCLKEN(SPINDLE_PWM_TIMER_N)
 
 #endif // SPINDLE_PWM_PORT_BASE
 
@@ -366,7 +378,7 @@
 
 #define AUXOUTPUT0_PWM_PORT            ((GPIO_TypeDef *)AUXOUTPUT0_PWM_PORT_BASE)
 #define AUXOUTPUT0_PWM_AF              timerAF(AUXOUTPUT0_PWM_TIMER_N, AUXOUTPUT0_PWM_TIMER_AF)
-#define AUXOUTPUT0_PWM_CLOCK_ENA       timerCLKENA(AUXOUTPUT0_PWM_TIMER_N)
+#define AUXOUTPUT0_PWM_CLKEN           timerCLKEN(AUXOUTPUT0_PWM_TIMER_N)
 
 #endif // AUXOUTPUT0_PWM_PORT_BASE
 
@@ -459,7 +471,7 @@
 
 #define AUXOUTPUT1_PWM_PORT            ((GPIO_TypeDef *)AUXOUTPUT1_PWM_PORT_BASE)
 #define AUXOUTPUT1_PWM_AF              timerAF(AUXOUTPUT1_PWM_TIMER_N, AUXOUTPUT1_PWM_TIMER_AF)
-#define AUXOUTPUT1_PWM_CLOCK_ENA       timerCLKENA(AUXOUTPUT1_PWM_TIMER_N)
+#define AUXOUTPUT1_PWM_CLKEN           timerCLKEN(AUXOUTPUT1_PWM_TIMER_N)
 
 #endif // AUXOUTPUT1_PWM_PORT_BASE
 
@@ -469,6 +481,17 @@
 #define AUX_ANALOG 0
 #endif
 
+#if !defined(PULSE2_TIMER_N) && STEP_INJECT_ENABLE
+#if SPINDLE_PWM_TIMER_N == 2 || SPINDLE_PWM_TIMER_N == 9
+#define PULSE2_TIMER_N              3
+#else
+#define PULSE2_TIMER_N              2
+#endif
+#define PULSE2_TIMER                timer(PULSE2_TIMER_N)
+#define PULSE2_TIMER_CLKEN          timerCLKEN(PULSE2_TIMER_N)
+#define PULSE2_TIMER_IRQn           timerINT(PULSE2_TIMER_N)
+#define PULSE2_TIMER_IRQHandler     timerHANDLER(PULSE2_TIMER_N)
+#endif
 
 #if SPINDLE_PWM_TIMER_N == 9
 #define DEBOUNCE_TIMER_N            13
@@ -480,28 +503,31 @@
 #define DEBOUNCE_TIMER_IRQHandler   TIM1_BRK_TIM9_IRQHandler // !
 #endif
 #define DEBOUNCE_TIMER              timer(DEBOUNCE_TIMER_N)
-#define DEBOUNCE_TIMER_CLOCK_ENA    timerCLKENA(DEBOUNCE_TIMER_N)
+#define DEBOUNCE_TIMER_CLKEN        timerCLKEN(DEBOUNCE_TIMER_N)
 
 #if SPINDLE_SYNC_ENABLE
 
 #if SPINDLE_PWM_TIMER_N == 2 || SPINDLE_PWM_TIMER_N == 3
 #error Timer conflict: spindle sync and spindle PWM!
 #endif
+#if PULSE2_TIMER_N == 2 || PULSE2_TIMER_N == 3
+#error Timer conflict: spindle sync and step inject!
+#endif
 #ifndef RPM_COUNTER_N
 #define RPM_COUNTER_N               3
 #endif
 #define RPM_COUNTER                 timer(RPM_COUNTER_N)
+#define RPM_COUNTER_CLKEN           timerCLKEN(RPM_COUNTER_N)
 #define RPM_COUNTER_IRQn            timerINT(RPM_COUNTER_N)
 #define RPM_COUNTER_IRQHandler      timerHANDLER(RPM_COUNTER_N)
-#define RPM_COUNTER_CLOCK_ENA       timerCLKENA(RPM_COUNTER_N)
 
 #ifndef RPM_TIMER_N
 #define RPM_TIMER_N                 2
 #endif
 #define RPM_TIMER                   timer(RPM_TIMER_N)
+#define RPM_TIMER_CLKEN             timerCLKEN(RPM_TIMER_N)
 #define RPM_TIMER_IRQn              timerINT(RPM_TIMER_N)
 #define RPM_TIMER_IRQHandler        timerHANDLER(RPM_TIMER_N)
-#define RPM_TIMER_CLOCK_ENA         timerCLKENA(RPM_TIMER_N)
 
 #elif PPI_ENABLE
 
@@ -511,9 +537,9 @@
 
 #define PPI_TIMER_N                 2
 #define PPI_TIMER                   timer(PPI_TIMER_N)
+#define PPI_TIMER_CLKEN             timerCLKEN(PPI_TIMER_N)
 #define PPI_TIMER_IRQn              timerINT(PPI_TIMER_N)
 #define PPI_TIMER_IRQHandler        timerHANDLER(PPI_TIMER_N)
-#define PPI_TIMER_CLOCK_ENA         timerCLKENA(PPI_TIMER_N)
 
 #endif
 
@@ -530,6 +556,24 @@
 #define FLASH_ENABLE 1
 #else
 #define FLASH_ENABLE 0
+#endif
+
+#if USB_SERIAL_CDC && defined(SERIAL_PORT)
+#define SP0 1
+#else
+#define SP0 0
+#endif
+
+#ifdef SERIAL1_PORT
+#define SP1 1
+#else
+#define SP1 0
+#endif
+
+#ifdef SERIAL2_PORT
+#define SP2 1
+#else
+#define SP3 0
 #endif
 
 #if MODBUS_ENABLE
@@ -556,20 +600,13 @@
 #define KEYPAD_TEST 0
 #endif
 
-#if MODBUS_TEST + KEYPAD_TEST + MPG_TEST + TRINAMIC_TEST + (BLUETOOTH_ENABLE ? 1 : 0) > 1
-#error "Only one option that uses the serial port can be enabled!"
+#if (MODBUS_TEST + KEYPAD_TEST + MPG_TEST + TRINAMIC_TEST + (BLUETOOTH_ENABLE ? 1 : 0)) > (SP0 + SP1 + SP2)
+#error "Too many options that uses a serial port are enabled!"
 #endif
 
-#if MODBUS_TEST || KEYPAD_TEST || MPG_TEST || TRINAMIC_TEST || BLUETOOTH_ENABLE
-#ifndef SERIAL2_MOD
-#if IS_NUCLEO_DEVKIT
-#define SERIAL2_MOD 1
-#else
-#define SERIAL2_MOD 2
-#endif
-#endif
-#endif
-
+#undef SP0
+#undef SP1
+#undef SP2
 #undef MODBUS_TEST
 #undef KEYPAD_TEST
 #undef MPG_TEST
@@ -660,12 +697,11 @@ void gpio_irq_enable (const input_signal_t *input, pin_irq_mode_t irq_mode);
 #ifdef HAS_BOARD_INIT
 void board_init (void);
 #endif
-#ifdef HAS_IOPORTS
+
 void ioports_init(pin_group_pins_t *aux_inputs, pin_group_pins_t *aux_outputs);
 #if AUX_ANALOG
 void ioports_init_analog (pin_group_pins_t *aux_inputs, pin_group_pins_t *aux_outputs);
 #endif
 void ioports_event (uint32_t bit);
-#endif
 
 #endif // __DRIVER_H__

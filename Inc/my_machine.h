@@ -22,22 +22,23 @@
 // NOTE: Only one board may be enabled!
 // If none is enabled pin mappings from generic_map.h will be used.
 //#define BOARD_CNC3040
-//#define BOARD_PROTONEER_3XX   // For use with Nucleo-F411RE and F446RE boards.
-//#define BOARD_GENERIC_UNO     // For use with Nucleo-F411RE and F446RE boards.
+//#define BOARD_PROTONEER_3XX       // For use with Nucleo-F411RE and F446RE boards.
+//#define BOARD_GENERIC_UNO         // For use with Nucleo-F411RE and F446RE boards.
 //#define BOARD_CNC_BOOSTERPACK
-//#define BOARD_MORPHO_CNC      // For use with Nucleo-F411RE and F446RE boards. Work in progress.
-//#define BOARD_MORPHO_DAC_CNC  // For use with F446RE boards and a 32-bit I2S stereo DAC for X and Y output. **EXPERIMENTAL**
-//#define BOARD_BLACKPILL       // For use with F411 BlackPill, with optional auto square support for one axis
-//#define BOARD_BLACKPILL_ALT2  // For use with F411 BlackPill, with optional auto square support for one axis, I2C and spindle sync
-//#define BOARD_MINI_BLACKPILL  // For use with F411 BlackPill, https://github.com/avizienis/Minimal-Black-Pill--STM32F4xx-BOB-for-grblHAL
-//#define BOARD_BTT_SKR_PRO_1_1 // F407 based 3D Printer board
-//#define BOARD_BTT_SKR_PRO_1_2 // F407 based 3D Printer board
-//#define BOARD_BTT_SKR_20      // F407 based 3D Printer board
-//#define BOARD_BTT_SKR_20_DAC  // F407 based 3D Printer board, uses analog output (DAC) for spindle speed control
-//#define BOARD_FYSETC_S6       // F446 based 3D Printer board
-//#define BOARD_FLEXI_HAL       // F446 CNC board
-//#define BOARD_STM32F401_UNI   // F401 CNC board
-//#define BOARD_MY_MACHINE      // Add my_machine_map.h before enabling this!
+//#define BOARD_MORPHO_CNC          // For use with Nucleo-F411RE and F446RE boards. Work in progress.
+//#define BOARD_MORPHO_DAC_CNC      // For use with F446RE boards and a 32-bit I2S stereo DAC for X and Y output. **EXPERIMENTAL**
+//#define BOARD_BLACKPILL           // For use with F411 BlackPill, with optional auto square support for one axis
+//#define BOARD_BLACKPILL_ALT2      // For use with F411 BlackPill, with optional auto square support for one axis, I2C and spindle sync
+//#define BOARD_MINI_BLACKPILL      // For use with F411 BlackPill, https://github.com/avizienis/Minimal-Black-Pill--STM32F4xx-BOB-for-grblHAL
+//#define BOARD_BTT_SKR_PRO_1_1     // F407 based 3D Printer board
+//#define BOARD_BTT_SKR_PRO_1_2     // F407 based 3D Printer board
+//#define BOARD_BTT_SKR_20          // F407 based 3D Printer board
+//#define BOARD_BTT_SKR_20_DAC      // F407 based 3D Printer board, uses analog output (DAC) for spindle speed control
+//#define BOARD_FYSETC_S6           // F446 based 3D Printer board
+//#define BOARD_FLEXI_HAL           // F446 CNC board
+//#define BOARD_STM32F401_UNI       // F401 CNC board
+//#define BOARD_MKS_ROBIN_NANO_30   // F407 based 3D Printer board - untested!
+//#define BOARD_MY_MACHINE          // Add my_machine_map.h before enabling this!
 
 // WARNING: BOARD_BTT_SKR_20 may fry your Trinamic drivers due to bad hardware design.
 //          The risk goes away if Q1 (HY1904C2) is shorted between source (S) and drain (D).
@@ -82,6 +83,7 @@
 //#define TRINAMIC_ENABLE   2209 // Trinamic TMC2209 stepper driver support. NOTE: work in progress.
 //#define TRINAMIC_I2C         1 // Trinamic I2C - SPI bridge interface.
 //#define TRINAMIC_DEV         1 // Development mode, adds a few M-codes to aid debugging. Do not enable in production code.
+//#define FANS_ENABLE          1 // Enable fan control via M106/M107. Enables fans plugin.
 //#define EEPROM_ENABLE       16 // I2C EEPROM/FRAM support. Set to 16 for 2K, 32 for 4K, 64 for 8K, 128 for 16K and 256 for 16K capacity.
 //#define EEPROM_IS_FRAM       1 // Uncomment when EEPROM is enabled and chip is FRAM, this to remove write delay.
 //#define SPINDLE_SYNC_ENABLE  1 // Enable spindle sync support (G33, G76). !! NOTE: Alpha quality - enable only for test or verification.
