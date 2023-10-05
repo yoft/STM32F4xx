@@ -27,6 +27,10 @@ $RECYCLE.BIN/
 # Build folder
 build
 .pio/
+Release F446 12MHz 32K Bootloader/
+446 23mhz 23kBL eeprom/
+466 12Mhz 32k BL/
+Debug F446 Nucleo64/
 
 #
 # =========================
@@ -36,3 +40,5 @@ build
 .vscode/settings.json
 .vscode/c_cpp_properties.json
 *.code-workspace
+.cproject
+.settings/language.settings.xml

@@ -48,9 +48,13 @@
 #define SERIAL1_PORT                21
 #define SERIAL2_PORT                32
 
+#undef I2C_ENABLE
+#undef EEPROM_ENABLE
 
 // Default pins PB8 (SCL) & PB9 (SDA)
+#define I2C_ENABLE      1
 #define I2C_PORT 1
+#define EEPROM_ENABLE 32
 //#define I2C1_ALT_PINMAP // GPIOB, SCL_PIN = 6, SDA_PIN = 7
 
 // TODO: Add support for trinamic
@@ -180,7 +184,7 @@
 
 
 // Define spindle PWM output pin.
-#define SPINDLE_PWM_PORT_BASE       GPIOA_BASEA
+#define SPINDLE_PWM_PORT_BASE       GPIOA_BASE
 #define SPINDLE_PWM_PIN             8                           // FAN0
 
 // Define flood and mist coolant enable output pins.

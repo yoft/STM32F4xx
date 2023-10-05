@@ -34,7 +34,7 @@
 //#define BOARD_BTT_SKR_PRO_1_2     // F407 based 3D Printer board
 //#define BOARD_BTT_SKR_20          // F407 based 3D Printer board
 //#define BOARD_BTT_SKR_20_DAC      // F407 based 3D Printer board, uses analog output (DAC) for spindle speed control
-//#define BOARD_BTT_OCTOPUS_PRO     // F446 based 3D Printer board
+#define BOARD_BTT_OCTOPUS_PRO     // F446 based 3D Printer board
 //#define BOARD_FYSETC_S6           // F446 based 3D Printer board
 //#define BOARD_FLEXI_HAL           // F446 CNC board
 //#define BOARD_STM32F401_UNI       // F401 CNC board
@@ -58,7 +58,7 @@
 // Uncomment to enable.
 
 #if IS_NUCLEO_DEVKIT != 64 && !defined(USB_SERIAL_CDC) // The Nucleo boards has an off-chip UART to USB interface.
-#define USB_SERIAL_CDC         1 // Serial communication via native USB.
+#define USB_SERIAL_CDC         0 // Serial communication via native USB.
 #endif
 //#define SAFETY_DOOR_ENABLE   1 // Enable safety door input.
 //#define BLUETOOTH_ENABLE     2 // Set to 2 for HC-05 module. Requires and claims one auxillary input pin.
