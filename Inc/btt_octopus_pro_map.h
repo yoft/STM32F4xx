@@ -45,8 +45,8 @@
 // USART3 is ESP-12S Header
 
 #define SERIAL_PORT                 1
-#define SERIAL1_PORT                21
-#define SERIAL2_PORT                32
+//#define SERIAL1_PORT                21
+//#define SERIAL2_PORT                32
 
 #undef I2C_ENABLE
 #undef EEPROM_ENABLE
