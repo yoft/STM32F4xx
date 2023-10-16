@@ -138,9 +138,9 @@ static void SystemClock_Config(void)
       .HSEState = RCC_HSE_ON,
       .PLL.PLLState = RCC_PLL_ON,
       .PLL.PLLSource = RCC_PLLSOURCE_HSE,
-      .PLL.PLLM = 6, // Input clock divider (12MHz crystal) = Base clock 1MHz
+      .PLL.PLLM = 6, // Input clock divider (12MHz crystal)
       .PLL.PLLN = 180, // Main clock multiplier
-      .PLL.PLLP = RCC_PLLP_DIV2, // Main clock divider = Main clock 168MHz
+      .PLL.PLLP = RCC_PLLP_DIV2, // Main clock divider =
       .PLL.PLLQ = 8, // Special peripheral (USB) clock divider (relative to main clock multiplier) = USB clock 48MHz
       .PLL.PLLR = 2
   };
@@ -148,6 +148,7 @@ static void SystemClock_Config(void)
   #define APB1CLKDIV RCC_HCLK_DIV4
   #define APB2CLKDIV RCC_HCLK_DIV2
   #define FLASH_LATENCY FLASH_LATENCY_5
+  #define SYSCLKSRC RCC_SYSCLKSOURCE_PLLRCLK
 
   #else
 
@@ -323,11 +324,14 @@ static void SystemClock_Config(void)
 #ifndef APB2CLKDIV
 #define APB2CLKDIV RCC_HCLK_DIV1
 #endif
+#ifndef SYSCLKSRC
+#define SYSCLKSRC RCC_SYSCLKSOURCE_PLLCLK
+#endif
 
     /** Initializes the CPU, AHB and APB busses clocks */
     RCC_ClkInitTypeDef RCC_ClkInitStruct = {
         .ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK|RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2,
-        .SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK,
+        .SYSCLKSource = SYSCLKSRC,
         .AHBCLKDivider = RCC_SYSCLK_DIV1,
         .APB1CLKDivider = APB1CLKDIV,
         .APB2CLKDivider = APB2CLKDIV
