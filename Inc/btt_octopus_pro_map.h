@@ -45,8 +45,8 @@
 // USART3 is ESP-12S Header
 
 #define SERIAL_PORT                 1
-//#define SERIAL1_PORT                21
-//#define SERIAL2_PORT                32
+#define SERIAL1_PORT                21
+#define SERIAL2_PORT                32
 
 #undef I2C_ENABLE
 #undef EEPROM_ENABLE
@@ -56,6 +56,9 @@
 #define I2C_PORT 1
 #define EEPROM_ENABLE 32
 //#define I2C1_ALT_PINMAP // GPIOB, SCL_PIN = 6, SDA_PIN = 7
+
+#undef SDCARD_ENABLE
+#define SDCARD_ENABLE 2
 
 // TODO: Add support for trinamic
 // #if TRINAMIC_ENABLE

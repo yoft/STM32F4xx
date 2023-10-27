@@ -554,7 +554,7 @@
 
 // End configuration
 
-#if EEPROM_ENABLE == 0
+#if EEPROM_ENABLE == 0 && !defined(FLASH_ENABLE)
 #define FLASH_ENABLE 1
 #else
 #define FLASH_ENABLE 0

@@ -133,6 +133,22 @@ static void SystemClock_Config(void)
 
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitTypeDef RCC_ClkPreInitStruct = {
+	  .ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+	  	  	  |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2,
+	  .SYSCLKSource = RCC_SYSCLKSOURCE_HSI,
+	  .AHBCLKDivider = RCC_SYSCLK_DIV1,
+	  .APB1CLKDivider = RCC_HCLK_DIV4,
+	  .APB2CLKDivider = RCC_HCLK_DIV2
+  };
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkPreInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
   RCC_OscInitTypeDef RCC_OscInitStruct = {
       .OscillatorType = RCC_OSCILLATORTYPE_HSE,
       .HSEState = RCC_HSE_ON,

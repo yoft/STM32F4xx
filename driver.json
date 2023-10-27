@@ -485,7 +485,7 @@
         "digital_in": 7,
         "digital_out": 8,
         "eeprom": 1,
-        "fram": 1,
+        "fram": 0,
         "i2c": 1,
         "trinamic_spi_cs": 1,
         "trinamic_spi_chain": 0,
