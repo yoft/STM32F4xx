@@ -159,8 +159,8 @@
 #define M6_STEP_PIN                 2
 #define M6_DIRECTION_PORT           GPIOE
 #define M6_DIRECTION_PIN            3
-// #define M6_LIMIT_PORT               GPIOG
-// #define M6_LIMIT_PIN                14
+#define M6_LIMIT_PORT               GPIOG
+#define M6_LIMIT_PIN                13
 #define M6_ENABLE_PORT              GPIOD
 #define M6_ENABLE_PIN               4
 #endif
@@ -250,8 +250,8 @@
 // Probe C5
 // Bl-touch PB6(pin 3) & PB7(pin 1)
 // Define probe switch input pin.
-#define PROBE_PORT                  GPIOC
-#define PROBE_PIN                   5                           // Probe Switch
+#define PROBE_PORT                  GPIOG
+#define PROBE_PIN                   15                           // Probe Switch
 
 
 #if SDCARD_ENABLE
